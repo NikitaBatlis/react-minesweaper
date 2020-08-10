@@ -1,0 +1,47 @@
+body {
+  background-color: rgb(190, 190, 190);
+  padding: 1rem;
+  font-family: sans-serif;
+}
+.clear {
+  clear: both;
+  content: ""
+}
+
+.game {
+  display: block;
+  flex-direction: column;
+}
+
+.game-info {
+  text-align: left;
+
+}
+
+.board {
+  text-align: left;
+}
+
+.cell {
+  background: #d1ecf1;
+  border: 1px solid #80acb3;
+  float: left;
+  line-height: 34px;
+  height: 34px;
+  text-align: center;
+  width: 34px;
+  cursor: pointer;
+}
+
+.cell:focus {
+  outline: none;
+}
+
+.hidden {
+  background: #bee5eb;
+}
+
+.is-flag,
+.is-mine {
+  color: #fc543c;
+}
