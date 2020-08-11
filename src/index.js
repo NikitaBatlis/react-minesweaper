@@ -7,6 +7,7 @@ import Alert from 'react-bootstrap/Alert';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Board from './components/Board';
+import Rules from './components/Rules';
 import './index.css';
 
 class Game extends React.Component {
@@ -68,12 +69,9 @@ class Game extends React.Component {
                 <Container fluid className="game-info">
                     <Row className="justify-content-Left">
                         <Col md ={7}>
-                            <Alert variant="info">
+                            <Alert variant="secondary">
                                 <h2>Minesweeper</h2>
-                                <h4>Rules</h4>
-                                <p>You are presented with a board of squares. Some squares contain mines (bombs), others don't. If you click on a square containing a bomb, you lose. If you manage to click all the squares (without clicking on any bombs) or flag all the mines, you win.</p>
-                                <p>Clicking a square which doesn't have a bomb reveals the number of neighbouring squares containing bombs. Use this information plus some guess work to avoid the bombs.</p>
-                                <p>To open a square, point at the square and click on it. To mark a square you think is a bomb, point and right-click.</p>
+                                <Rules />
                             </Alert>
                         </Col>
                     </Row>

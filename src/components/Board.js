@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Cell from './Cell';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+import GameOverModal from './Modal'
 
 export default class Board extends React.Component {
 
@@ -12,6 +13,8 @@ export default class Board extends React.Component {
         boardData: this.initBoardData(this.props.height, this.props.width, this.props.mines),
         gameWon: false,
         mineCount: this.props.mines,
+        showModal: false,
+        modalMessage: ''
     };
 
     /* Helper Functions */
@@ -215,10 +218,11 @@ export default class Board extends React.Component {
         // check if revealed. return if true.
         if (this.state.boardData[x][y].isRevealed) return null;
 
+
         // check if mine. game over if true
         if (this.state.boardData[x][y].isMine) {
             this.revealBoard();
-            alert("game over");
+            this.showModal("game over");
         }
 
         let updatedData = this.state.boardData;
@@ -232,7 +236,7 @@ export default class Board extends React.Component {
         if (this.getHidden(updatedData).length === this.props.mines) {
             win = true;
             this.revealBoard();
-            alert("You Win");
+            this.showModal("You Win");
         }
 
         this.setState({
@@ -265,7 +269,7 @@ export default class Board extends React.Component {
             win = (JSON.stringify(mineArray) === JSON.stringify(FlagArray));
             if (win) {
                 this.revealBoard();
-                alert("You Win");
+                this.showModal("You Win");
             }
         }
 
@@ -308,7 +312,24 @@ export default class Board extends React.Component {
             boardData: this.initBoardData(this.props.height, this.props.width, this.props.mines),
             gameWon: false,
             mineCount: this.props.mines,
+            showModal: false
         });
+    }
+
+    showModal = (message) => {
+        this.setState({
+            ...this.state,
+            showModal: true,
+            modalMessage: message
+        })
+    }
+
+    hideModal = () => {
+        this.setState({
+            ...this.state,
+            showModal: false,
+            modalMessage: ''
+        })
     }
 
 
@@ -329,6 +350,7 @@ export default class Board extends React.Component {
                 <div className="renderBoard">
                     {this.renderBoard(this.state.boardData)}
                 </div>
+                <GameOverModal show={this.state.showModal} onHide={this.hideModal} message={this.state.modalMessage}/>
             </Container>
         );
     }

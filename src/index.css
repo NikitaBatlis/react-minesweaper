@@ -45,3 +45,12 @@ body {
 .is-mine {
   color: #fc543c;
 }
+
+.accordionCard {
+  background-color: #bee5eb!important;
+  cursor: pointer;
+}
+
+.accordionCardBody {
+  background-color: #d1ecf1!important;
+}
