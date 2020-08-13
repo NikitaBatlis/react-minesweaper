@@ -1,6 +1,9 @@
 # React Minesweeper
 
-## Student project to create the game minesweeper using react components, JSX and react-bootsrap.
+#### Student project to create the game minesweeper using react components, JSX and react-bootsrap.
+
+### Deployed on Heroku:
+https://nikitabatlis-react-minesweeper.herokuapp.com/
 
 ## Rules
 You are presented with a board of squares. Some squares contain mines (bombs), others don't. If you click on a square containing a bomb, you lose. If you manage to click all the squares (without clicking on any bombs) or flag all the mines, you win.
