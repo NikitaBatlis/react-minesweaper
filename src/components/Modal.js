@@ -8,7 +8,7 @@ export default class GameOverModal extends React.Component {
             return (
                 <Modal
                     {...this.props}
-                    size="lg"
+                    size="md"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
                     >
@@ -18,7 +18,7 @@ export default class GameOverModal extends React.Component {
                         <h4>{this.props.message}</h4>
                     </Modal.Body>
                     <Modal.Footer>
-                    <Button onClick={this.props.onHide}>Close</Button>
+                    <Button variant="info" onClick={this.props.onHide}>Close</Button>
                     </Modal.Footer>
                 </Modal>
             );

@@ -3,7 +3,6 @@ import Cell from './Cell';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import GameOverModal from './Modal'
 
@@ -18,57 +17,6 @@ export default class Board extends React.Component {
     };
 
     /* Helper Functions */
-
-    // get mines
-    getMines(data) {
-        let mineArray = [];
-
-        data.map(datarow => {
-            datarow.map((dataitem) => {
-                if (dataitem.isMine) {
-                    mineArray.push(dataitem);
-                }
-            });
-        });
-
-        return mineArray;
-    }
-
-    // get Flags
-    getFlags(data) {
-        let mineArray = [];
-
-        data.map(datarow => {
-            datarow.map((dataitem) => {
-                if (dataitem.isFlagged) {
-                    mineArray.push(dataitem);
-                }
-            });
-        });
-
-        return mineArray;
-    }
-
-    // get Hidden cells
-    getHidden(data) {
-        let mineArray = [];
-
-        data.map(datarow => {
-            datarow.map((dataitem) => {
-                if (!dataitem.isRevealed) {
-                    mineArray.push(dataitem);
-                }
-            });
-        });
-
-        return mineArray;
-    }
-
-    // get random number given a dimension
-    getRandomNumber(dimension) {
-        // return Math.floor(Math.random() * dimension);
-        return Math.floor((Math.random() * 1000) + 1) % dimension;
-    }
 
     // Gets initial board data
     initBoardData(height, width, mines) {
@@ -90,8 +38,52 @@ export default class Board extends React.Component {
         }
         data = this.plantMines(data, height, width, mines);
         data = this.getNeighbours(data, height, width);
-        console.log(data);
         return data;
+    }
+
+    // get mines
+    getMines(data) {
+        let mineArray = [];
+        data.map(datarow => {
+            datarow.map((dataitem) => {
+                if (dataitem.isMine) {
+                    mineArray.push(dataitem);
+                }
+            });
+        });
+        return mineArray;
+    }
+
+    // get Flags
+    getFlags(data) {
+        let mineArray = [];
+        data.map(datarow => {
+            datarow.map((dataitem) => {
+                if (dataitem.isFlagged) {
+                    mineArray.push(dataitem);
+                }
+            });
+        });
+        return mineArray;
+    }
+
+    // get Hidden cells
+    getHidden(data) {
+        let mineArray = [];
+        data.map(datarow => {
+            datarow.map((dataitem) => {
+                if (!dataitem.isRevealed) {
+                    mineArray.push(dataitem);
+                }
+            });
+        });
+        return mineArray;
+    }
+
+    // get random number given a dimension
+    getRandomNumber(dimension) {
+        // return Math.floor(Math.random() * dimension);
+        return Math.floor((Math.random() * 1000) + 1) % dimension;
     }
 
     // plant mines on the board
@@ -195,7 +187,7 @@ export default class Board extends React.Component {
         })
     }
 
-    /* reveal logic for empty cell */
+    // reveal logic for empty cell 
     revealEmpty(x, y, data) {
         let area = this.traverseBoard(x, y, data);
         area.map(value => {
@@ -210,7 +202,7 @@ export default class Board extends React.Component {
 
     }
 
-    // Handle User Events
+    /* Handle User Events */
 
     handleCellClick(x, y) {
         let win = false;
@@ -222,7 +214,7 @@ export default class Board extends React.Component {
         // check if mine. game over if true
         if (this.state.boardData[x][y].isMine) {
             this.revealBoard();
-            this.showModal("game over");
+            this.showModal("You Lost, try again!");
         }
 
         let updatedData = this.state.boardData;
@@ -294,9 +286,9 @@ export default class Board extends React.Component {
                     </div>);
             })
         });
-
     }
-    // Component methods
+
+    /* Component methods */
     componentWillReceiveProps(nextProps) {
         if (JSON.stringify(this.props) !== JSON.stringify(nextProps)) {
             this.setState({
@@ -338,19 +330,27 @@ export default class Board extends React.Component {
         return (
             
             <Container fluid className="board">
-                <Row className="justify-content-Left">
+                <Row>
                     <Col md ={12}>
-                        <Alert variant="secondary">
-                            Number of mines: {this.state.mineCount}
+                        <div className="boardInfo">
+                            Number of mines: 20
                             {this.state.gameWon ? "You Win" : ""} <br />
-                            <Button variant="info" onClick={this.restartGame}>Click to restart!</Button>
-                        </Alert>
+                        </div>
                     </Col>
                 </Row>
-                <div className="renderBoard">
-                    {this.renderBoard(this.state.boardData)}
-                </div>
+
+                <Row>
+                    <Col md={12}>
+                        <div className="renderBoard">
+                            {this.renderBoard(this.state.boardData)}
+                        </div>
+                    </Col>
+                </Row>
+
+                <Row><Button variant="info" onClick={this.restartGame}>Click to restart!</Button></Row>
+
                 <GameOverModal show={this.state.showModal} onHide={this.hideModal} message={this.state.modalMessage}/>
+
             </Container>
         );
     }

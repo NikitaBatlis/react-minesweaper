@@ -1,8 +1,8 @@
 body {
-  background-color: rgb(190, 190, 190);
-  padding: 1rem;
+  margin: 0;
   font-family: sans-serif;
 }
+
 .clear {
   clear: both;
   content: ""
@@ -13,13 +13,68 @@ body {
   flex-direction: column;
 }
 
-.game-info {
-  text-align: left;
-
+.wrapper {
+  box-sizing: border-box;
+  background: linear-gradient(to right, #B3E5FC, #D1F2EB);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+  
+.main {
+  box-sizing: border-box;
+  height: 65vh;
+  min-width: 55vw;
+  max-width: 75vw;
+  background: #fff;
+  box-shadow: 0px 10px 20px -10px #2c3e50;
+  border-radius: 20px;
+  margin: 0 auto;
+}
+  
+.gameContainer {
+  box-sizing: border-box;
+  height: 65vh;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#424242 ;
 }
 
-.board {
-  text-align: left;
+.gameInfoLeft {
+  box-sizing: border-box;
+  padding: 3rem 2rem;
+  
+}
+
+.gameTitle {
+  margin: 0 0 2rem 0;
+}
+
+.rulesContainer {
+  margin: 0 0 2rem 0;
+}
+
+.boardColRight {
+  box-sizing: border-box;
+  background-color:#37474F ;
+  border-radius: 0 20px 20px 0;
+  height: 65vh;
+  padding: 2rem 2rem;
+}
+
+.board .row {
+  margin: 1rem 2rem;
+}
+
+.board .row .btn {
+  margin: 1em;
+}
+
+.boardInfo {
+  color: #FFFFFF;
 }
 
 .cell {
@@ -44,13 +99,4 @@ body {
 .is-flag,
 .is-mine {
   color: #fc543c;
-}
-
-.accordionCard {
-  background-color: #bee5eb!important;
-  cursor: pointer;
-}
-
-.accordionCardBody {
-  background-color: #d1ecf1!important;
 }
