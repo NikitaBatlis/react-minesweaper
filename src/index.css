@@ -15,7 +15,7 @@ body {
 
 .wrapper {
   box-sizing: border-box;
-  background: linear-gradient(to right, #B3E5FC, #D1F2EB);
+  background: url("background.jpg");
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -26,9 +26,9 @@ body {
   box-sizing: border-box;
   height: 65vh;
   min-width: 55vw;
-  max-width: 75vw;
+  max-width: 65vw;
   background: #fff;
-  box-shadow: 0px 10px 20px -10px #2c3e50;
+  box-shadow: 0px 0px 20px 20px #ffffff52;
   border-radius: 20px;
   margin: 0 auto;
 }
